@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 
-const rolesRouter = require('../roles/roles-router.js');
+const rolesRouter = require('../roles/roles-router.js')
 
 const server = express();
 

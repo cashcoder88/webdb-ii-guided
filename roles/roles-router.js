@@ -1,8 +1,27 @@
+const knex = require('knex');
+
+
 const router = require('express').Router();
+
+const knexConfig = {
+  client: 'sqlite3',
+  connection: {
+    filename: './data/rolex.db3'
+  },
+  useNullAsDefault: true, //required only for sqlite3
+};
+
+const db = knex(knexConfig);
 
 router.get('/', (req, res) => {
   // get the roles from the database
-  res.send('Write code to retrieve all roles');
+  db('roles')
+  .then(roles => {
+    res.status(200).json(roles)
+  })
+  .catch(error => {
+    res.status(500).json(error)
+  })
 });
 
 router.get('/:id', (req, res) => {
